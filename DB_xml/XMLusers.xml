@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<users xmlns="XMLusers.xsd" id="1">
+  <user name="Bill Gates">
+    <company>Microsoft</company>
+    <age>48</age>
+  </user>
+  <user name="Larry Page">
+    <company>Google</company>
+    <age>42</age>
+  </user>
+</users>
