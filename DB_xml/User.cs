@@ -16,5 +16,12 @@ namespace DB_xml
             Company = company;
             Age = age;
         }
+        public User(int id, string name, string company, int age)
+        {
+            Id = id;
+            Name = name;
+            Company = company;
+            Age = age;
+        }
     }
 }

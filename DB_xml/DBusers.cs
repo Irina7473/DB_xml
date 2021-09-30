@@ -31,7 +31,7 @@ namespace DB_xml
             try
             {
                 _connection.Open();
-                Console.WriteLine("Успешное подключение к базе данных");
+                //Console.WriteLine("Успешное подключение к базе данных");
             }
             catch (InvalidOperationException)
             {
@@ -54,10 +54,10 @@ namespace DB_xml
 
         public void AddUsers(string name, string company, int age)
         {
-            Open();
+             Open();
             _query.CommandText = $"INSERT INTO table_users (name, company, age) VALUES('{name}','{company}','{age}');";           
-            _query.ExecuteNonQuery();
-            Close();
+             _query.ExecuteNonQuery();
+             Close();
         }
 
         public void ShowAll()
@@ -68,7 +68,10 @@ namespace DB_xml
 
             if (!result.HasRows)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Нет данных");
+                Console.ResetColor();
+                Close();
                 return;
             }
 
@@ -95,7 +98,7 @@ namespace DB_xml
             foreach (var user in users)
                 Console.WriteLine($" {user.Id} |   {user.Name}   |   {user.Company}   | {user.Age} ");
             Console.WriteLine(" --------------------------------------------");
-
+            Console.WriteLine();
             if (result != null) result.Close();
             Close();
         }              
