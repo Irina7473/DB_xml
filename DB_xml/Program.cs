@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.IO;
 
 namespace DB_xml
 {
@@ -40,6 +42,7 @@ namespace DB_xml
             Console.WriteLine("Вывод из базы данных");            
             DB.ShowAll();
             Console.WriteLine();
+            SerializeJSON(usersList);
 
             // Вариант без XmlNodeList и XPath
             Console.ForegroundColor = ConsoleColor.Green;
@@ -72,6 +75,28 @@ namespace DB_xml
             }
             Console.WriteLine("Вывод из базы данных");
             DB.ShowAll();
-        }
+            SerializeJSON(usersList);
+
+            void SerializeJSON(List<User> usersList)
+            {
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                };
+
+                File.WriteAllText(@"G:\STEP\TEMP\DB_xml\DB_xml\Jsonusers.json", "[\n");
+                for (int i = 0; i < usersList.Count; i++)
+                {
+                    string jsonString = JsonSerializer.Serialize<User>(usersList[i], options);
+                    if (i == usersList.Count - 1) jsonString = jsonString + "\n";
+                    else jsonString = jsonString + "," + "\n";
+                    File.AppendAllText(@"G:\STEP\TEMP\DB_xml\DB_xml\Jsonusers.json", jsonString);
+                }
+                File.AppendAllText(@"G:\STEP\TEMP\DB_xml\DB_xml\Jsonusers.json", "]");
+
+                Console.WriteLine("Данные записаны в json");
+                Console.WriteLine();
+            }
+        }        
     }
 }
