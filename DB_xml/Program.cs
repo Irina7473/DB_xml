@@ -22,20 +22,14 @@ namespace DB_xml
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Вариант с XmlNodeList и XPath");
             Console.ResetColor();
-
-            XmlNodeList users = root?.SelectNodes("user");
                         
-            foreach (XmlNode n in users)
-                Console.WriteLine(n.SelectSingleNode("@name")?.Value);
-
+            XmlNodeList users = root?.SelectNodes("user");
+           
             foreach (XmlNode user in users)
             {
                 var name = user.SelectSingleNode("@name")?.Value;
-                Console.WriteLine(user.SelectSingleNode("@name").Value);
-                Console.WriteLine(name);
                 var company= user.SelectSingleNode("company")?.InnerText;
-                var age = Convert.ToInt32(user.SelectSingleNode("age")?.InnerText);
-                Console.WriteLine(name, company, age);
+                var age = Convert.ToInt32(user.SelectSingleNode("age")?.InnerText);               
                 DB.AddUsers(name, company, age);
                 usersList.Add(new User(name, company, age));
             }

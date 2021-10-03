@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
-<users xmlns="XMLusers.xsd" id="1">
+<users >
   <user name="Bill Gates">
     <company>Microsoft</company>
     <age>48</age>
